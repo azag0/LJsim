@@ -13,7 +13,8 @@ public :: tot_PE, force_list, c_tot_pe, c_force_list
 type, public, bind(c) :: Sp_t
     real(dp) :: eps, sigma, rc, L, dt
     integer :: N, Nt, thermo, seed
-    logical :: dump, use_numba, use_cython, use_fortran, use_cfortran
+    logical :: dump, use_numba, use_cython, use_fortran, use_cfortran, &
+        use_cffi
 end type
 
 abstract interface

@@ -4,6 +4,7 @@ __pycache__
 *.so
 *.so.dSYM
 *.mod
+*.o
 Dump/
 /build
 /system.mk

@@ -3,9 +3,12 @@ blddir = build
 FFLAGS ?= -O3
 F2PY ?= f2py
 
-all: lj_functions_c lj_functions_f ljcf.so
+all: lj_functions_c lj_functions_f lj liblj.so
 
-ljcf.so: ljcf.f90
+lj: build.py lj_func.h liblj.so
+	python3 $<
+
+liblj.so: lj.f90
 	${FC} -shared -fPIC ${FFLAGS} -o $@ $^
 
 lj_functions_c:
@@ -23,6 +26,7 @@ clean:
 	-rm *.so
 	-rm -r *.so.dSYM
 	-rm *.c
+	-rm *.o
 	-rm -r __pycache__
 
 distclean: clean

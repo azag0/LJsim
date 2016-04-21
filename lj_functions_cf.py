@@ -6,7 +6,7 @@ class Sp(Structure):
     _fields_ = [(name, t) for t, names in [
         (c_double, 'eps, sigma, rc, L, dt'),
         (c_int, 'N, Nt, thermo, seed'),
-        (c_bool, 'dump, use_numba, use_cython, use_fortran, use_cfortran')
+        (c_bool, 'dump, use_numba, use_cython, use_fortran, use_cfortran, use_cffi')
     ] for name in names.split(', ')]
 
 
@@ -21,7 +21,7 @@ def inv(A_in, A_out, n):
     A_out[:] = np.linalg.inv(A_in)
 
 
-ljlib = CDLL('ljcf.so')
+ljlib = CDLL('liblj.so')
 ljlib.tot_pe.restype = c_double
 ljlib.tot_pe.argtypes = [Matrix, Sp, c_int]
 ljlib.force_list.restype = None
